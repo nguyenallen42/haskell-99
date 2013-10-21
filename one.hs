@@ -79,6 +79,3 @@ count_sublist xs = (sum [1 | _ <- xs], head xs)
 
 encode :: Eq a => [a] -> [(Int, a)]
 encode = map count_sublist . pack
-
-flip' :: (a -> b -> c) -> (b -> a -> c)
-flip' f x y = f y x

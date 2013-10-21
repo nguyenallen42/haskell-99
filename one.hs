@@ -49,6 +49,13 @@ isPalindrome l   = (head l == last l) && isPalindrome (tail (init l))
 isPalindrome' :: Eq a => [a] -> Bool
 isPalindrome' l = l == reverse l
 
+-- Problem 7
+data NestedList a = Elem a | List [NestedList a] deriving Show
+flatten :: NestedList a -> [a]
+flatten (Elem a)      = [a]
+flatten (List [])     = []
+flatten (List (x:xs)) = flatten x ++ flatten (List xs)
+
 -- Problem 8
 compress :: Eq a => [a] -> [a]
 compress []  = []
@@ -72,3 +79,6 @@ count_sublist xs = (sum [1 | _ <- xs], head xs)
 
 encode :: Eq a => [a] -> [(Int, a)]
 encode = map count_sublist . pack
+
+flip' :: (a -> b -> c) -> (b -> a -> c)
+flip' f x y = f y x
